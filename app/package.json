@@ -1,0 +1,12 @@
+{
+  "name": "autoUpdate",
+  "version": "1.0.0",
+  "description": "a tool to develop",
+  "homepage": "",
+  "author": "tid",
+  "license": "ISC",
+  "main": "main.js",
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0"
+  }
+}

@@ -1,0 +1,8 @@
+node_modules
+*.zip
+app/node_modules
+*.lock
+dist
+outapp
+output
+wwwroot

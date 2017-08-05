@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Electron Updater Example</title>
+  <style type="text/css">
+  	html,body{font-family: 'Arial';font-size: 16px;}
+  	.icon-loading{display:inline-block;width:20px;height:20px;background:url(btn-loading-blue.gif) no-repeat;vertical-align: middle;margin-left: 20px;}
+  	.update-link{text-decoration: none;margin-left: 20px;color: #719be8;}
+  	.hide{display: none;}
+  </style>
+</head>
+<body>
+  Current version: <span id="version">vX.Y.Z</span><a href="javascript:;" class="update-link" id="js_update">检查更新</a><span class="icon-loading hide" id="js_icon_loading"></span>
+  <div id="messages"></div>
+<script>
+// 显示version
+let version = window.location.hash.substring(1);
+let $js_update = document.getElementById("js_update"),
+	$js_icon_loading = document.getElementById("js_icon_loading");
+
+document.getElementById('version').innerText = version;
+// 监听自动更新事件
+const {ipcRenderer} = require('electron');
+ipcRenderer.on('message', function(event, text) {
+  var container = document.getElementById('messages');
+  var message = document.createElement('div');
+  message.innerHTML = text;
+  container.appendChild(message);
+});
+
+ipcRenderer.on('hideUpldateLoading', function(event, text) {
+  if(text){
+  	$js_icon_loading.classList.remove('hide');
+  	$js_update.classList.add('hide');
+  }else{
+  	$js_icon_loading.classList.add('hide');
+  	$js_update.classList.remove('hide');
+  }
+});
+
+$js_update.addEventListener('click',function(){
+	ipcRenderer.send('check-for-update');
+})
+</script>
+</body>
+</html>
