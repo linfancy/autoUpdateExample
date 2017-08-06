@@ -6,8 +6,8 @@ const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 const ipcMain = electron.ipcMain;
 const dialog = electron.dialog;
-const globalShortcut = electron.globalShortcut;
-const autoUpdater = electron.autoUpdater
+// const globalShortcut = electron.globalShortcut;
+const autoUpdater = require("electron-updater").autoUpdater;
 
 autoUpdater.setFeedURL('http://127.0.0.1:8080/');
 // Keep a global reference of the window object, if you don't, the window will
@@ -128,7 +128,7 @@ function createWindow() {
 }
 
 
-startupEventHandle();
+// startupEventHandle();
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
